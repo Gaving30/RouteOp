@@ -1,0 +1,341 @@
+﻿
+/********************GENERAL FEATURES START*********************/
+/*Scrollbar design*/
+::-webkit-scrollbar {
+    width: 14px;
+}
+/*Scrollbar design*/ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+ /*Scrollbar design*/
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+/*Header across all pages*/
+#header{
+    background-color:green;
+    width:100%;
+    height:40px;
+}
+
+/*Footer across all pages*/
+footer {
+    font-size: 0.75em;
+    bottom: 50px;
+    width: 70%;
+    height: 30px;
+    display: inline;
+    margin: 125px;
+}
+
+/*All unordered lists throughout the site*/
+ul {
+    padding-left: 0em;
+}
+
+/*********************GENERAL FEATURES END**********************/
+
+
+/********************DEFAULT.ASPX START*********************/
+/*Input section for destinations on home page*/
+.userInputTextbox {
+    width: 300px;
+    margin: 6px;
+    border-radius: 25px;
+    padding-left: 10px;
+    outline: none !important;
+ }
+
+/*Input section for destinations on home page, when clicked on*/
+.userInputTextbox:focus{
+    background-color: #ecf9f2;
+}
+
+/*Numbering labels at input section on Default page*/
+.numberLabelsForDestinations{
+    width: 25px;
+    text-align: right;
+    font-size: 14px;
+}
+
+/*Div for inputting dynamic new textboxes on home page*/
+.input_fields_wrap{
+    margin-left: 48px;
+}
+
+/*Dropdown for choosing Mode of Travel*/
+#mode{
+    margin-top: 10px;
+}
+
+/*Labels from CodeBehind*/
+.LabelClass{
+    font-size: 15px;
+    float: left;
+    padding: 18px;
+}
+
+/*Div that all results from algorithm are put into after a route 'transaction'*/
+#returnResults{
+    min-width: 460px;
+    height: 460px;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 25px;
+    position: inherit;
+    clear: both;
+    width: 100%
+}
+
+/*This div contains the map div*/
+#mapAndResultDiv{
+    float: left;
+    width: 65%;
+    min-width: 460px;
+    height: 460px;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 25px;
+    margin-bottom: 5px;
+}
+
+/*Google Map section of the Home page*/
+#map{
+    min-width: 50%;
+    height: 100%;
+    border-radius: 22px;
+    margin-right: 0px;
+}
+
+/*Result div section, right side with optimal route details*/
+#mapside{
+    background-color: aliceblue;
+    width:55%;
+    height:80%;
+    float:right;
+    overflow-y: scroll;
+}
+
+/*Complete input div, containing all input textboxes and optimsie buttons */
+#mapInputSection{
+    min-width: 460px;
+    max-width: 460px;
+    float: left;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 25px;
+    min-height: 460px;
+    margin-right:35px;
+    background-color: #f2f2f2;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/*Button for optimising on Home page.*/
+#optimiseButton{
+    margin-top: 25px;
+    position: relative;
+}
+
+/*Heading from Jumbotron on Home page: "The Route Optimiosing sideKick*/
+#jumbotronHeading{
+    color: white;
+    font-family: 'Droid serif', serif; 
+    font-size: 38px; 
+    font-weight: 400;
+    font-style: italic; 
+    line-height: 44px; 
+    margin: 0 0 25px; 
+    text-align: center;
+}
+
+/*Result div at bottom of page. Result side is the side that displays the results for optimal route i.e. Destinaiton 1 Howth*/
+#resultSide{
+    background-color: aliceblue;
+    width:45%;
+    height:80%;
+    float:left;
+    overflow-y: scroll;
+}
+
+/*Header going across top left of result side on results section*/
+#headingLeft{
+    background-color: #f2f2f2;
+    width:45%;
+    height:10%;
+    border-top-left-radius: 21px;
+    float:left;
+}
+
+/*Header going across top right of result side on results section*/
+#headingRight{
+    background-color: #f2f2f2;
+    width:55%;
+    height:10%;
+    border-top-right-radius: 21px;
+    float:left;
+}
+
+/*Header going across top right of result side on results section*/
+#resultFooter{
+    background-color: #f2f2f2;
+    width:100%;
+    height:10%;
+    border-bottom-left-radius: 21px;
+    border-bottom-right-radius: 21px;
+    float:left;
+    padding-top:2.5px;
+}
+
+/*Main headins on default/home page */
+.mainHeadings {
+    text-align: center;
+    color: #b48608; 
+    font-family: 'Droid serif', serif; 
+    font-size: 26px; 
+    font-weight: 400;
+    font-style: italic; 
+    line-height: 44px; 
+    margin: 0 0 12px; 
+}
+
+/*********************DEFAULT.ASPX END**********************/
+
+
+/********************ADMIN.ASPX START*********************/
+/*GridView displaying content from database*/
+#GridView1{
+    width: 90%;
+}
+
+/*Div containing GridView */
+#gridViewDiv{
+    width:905px;
+}
+/*********************ADMIN.ASPX END**********************/
+
+
+/********************ABOUT.ASPX START*********************/
+/* Labels on the about.page ie What We Do, Free Account etc */
+.aboutLabels{
+    color: #b48608;
+    font-family: 'Droid serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 44px;
+}
+
+/* Complete div on about.aspx page containing all paragraphs and text */
+.aboutDiv{
+    display: table;
+    vertical-align: bottom;
+    max-width: 100%;
+    padding: 0% 15%;
+}
+
+/********************ABOUT.ASPX END*********************/
+
+
+/********************CONTACT.ASPX START*********************/
+/*Design for Success label when successful contact form sent*/
+.successLabel{
+    color: #b48608;
+    font-family: 'Droid serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 44px;
+    margin: 0 0 12px;
+}
+
+/*User niput textboxes for contact form*/
+.formsUserInput{
+    width: 300px;
+    margin: 8px 25px 8px 25px;
+    border-radius: 25px;
+    padding-left: 10px;
+    outline: none !important;
+}
+
+/* Labels on the Contact.aspx Page ie Name, eMail etc */
+.formsLabels{
+    padding-right: 190px;
+    color: #b48608;
+    font-family: 'Droid serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 44px;
+    margin: 0 0 12px;
+}
+
+/*Multiline comment box on contact form*/
+.commentsTextbox{
+    width: 300px;
+    margin: 6px 6px 6px 0px;
+    border-radius: 25px;
+    padding: 15px;
+    outline: none;
+    height: 250px;
+}
+
+/*********************CONTACT.ASPX END**********************/
+
+
+.highlight {
+    color: Red;
+}
+
+#destinations li {
+    list-style-type: none;
+}
+
+.autocomplete {
+    padding: 2px 2px 2px 2px;
+    width: 100%;
+}
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 55px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content f`m hitting the edges */
+.body-content {
+    width: 75%;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align:center; 
+    align-items: center;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="select"] {
+    max-width: 300px;
+    }
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        margin-top: 20px;
+    }
+    .body-content {
+        padding: 0;
+    }
+}
