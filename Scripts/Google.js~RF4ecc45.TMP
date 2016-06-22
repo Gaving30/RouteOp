@@ -1,0 +1,216 @@
+﻿
+//var directionDisplay;
+//var directionsService = new google.maps.DirectionsService();
+var map;
+var arrayOfDestinationNameValues = [];
+
+var labels = 'ABCDEFGHIJ';
+var labelIndex = 0;
+
+var directionsDisplay = new google.maps.DirectionsRenderer;
+var directionsService = new google.maps.DirectionsService;
+
+//window.initMap = function () {
+function initMap() {
+    console.log("initmap");
+    directionsDisplay = new google.maps.DirectionsRenderer({
+            suppressMarkers: false
+    });
+    
+    //Create new map within the 'map' div with default lat and long and a default zoom of 7.
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 53.3498, lng: -6.2603 },
+        zoom: 7
+    });
+
+    //Find current lat and long location and set this as default starting position
+    if (navigator.geolocation) {
+        browserSupportFlag = true;
+        navigator.geolocation.getCurrentPosition(function (position) {
+            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            map.setCenter(initialLocation);
+        }, function () {
+            handleNoGeolocation(browserSupportFlag);
+        });
+    }
+        //  The else statement is for browsers not supporting GeoLocation
+        //  Current browser support for the W3C Geolocation API as of 06-05-16
+        //  iPhone 3.0 +, Android 2.0 +, Firefox 3.5, Safari 5.0, Chrome 5.0, Internet Explorer 9.0+
+    else {
+        browserSupportFlag = false;
+        handleNoGeolocation(browserSupportFlag);
+    }
+
+    directionsDisplay.setMap(map);
+}
+
+function calcRoute(coordsConvertedToString) {
+     //Determines if the display will be for DRIVING, WALKING, BICYCLING or TRANSIT
+    var selectedMode = document.getElementById('mode').value;
+
+    var amountOfFields = numFldVariable.value;
+
+    var lat = [];
+    var lng = [];
+    var coords = []
+    var splitAdds = new Array();
+
+    splitAdds = coordsConvertedToString.split(',');
+       
+    lng = splitAdds.length - 1;
+    lat = splitAdds.length - 1;
+
+    for (var i = 0; i < splitAdds.length-1; i++) {
+        coords = splitAdds[i].split('#');
+        console.log("ccc:::::::::::::: " + coords);
+        console.log("ccc:::::::Length" + coords.length);
+        console.log("ccc0" + coords[0]);
+        console.log("ccc1" + coords[1]);
+        if (coords.length == 2)
+        {
+            lat[i] = coords[0];
+            lng[i] = coords[1];
+            console.log(lat[i]);
+            console.log(lng[i]);
+        }
+    }
+    
+    var waypts = [];
+
+    for (var num = 0; num < amountOfFields; num++) {
+        stop = new google.maps.LatLng(lat1, long1)
+        waypts.push({ location: stop, stopover: true });
+        createMarker(stop);
+    }
+
+    stop = new google.maps.LatLng(lat1, long1)
+    waypts.push({ location: stop, stopover: true });
+    createMarker(stop);
+
+    stop = new google.maps.LatLng(lat2, long2)
+    waypts.push({ location: stop, stopover: true });
+    createMarker(stop);
+
+    stop = new google.maps.LatLng(lat3, long3)
+    waypts.push({ location: stop, stopover: true });
+    createMarker(stop);
+
+    stop = new google.maps.LatLng(lat4, long4)
+    waypts.push({ location: stop, stopover: true });
+    createMarker(stop);
+
+    stop = new google.maps.LatLng(lat5, long5)
+    waypts.push({ location: stop, stopover: true });
+    createMarker(stop);
+
+    var start = new google.maps.LatLng(lat1, long1);
+    var end = new google.maps.LatLng(lat1, long1);
+
+    directionsDisplay.setPanel(document.getElementById('mapside'));
+
+    var request = {
+        origin: start,
+        destination: end,
+        waypoints: waypts,
+        optimizeWaypoints: false,
+        //travelMode: google.maps.DirectionsTravelMode.DRIVING
+        travelMode: google.maps.TravelMode[selectedMode]
+    };
+
+    directionsService.route(request, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            var route = response.routes[0];
+        }
+    });
+}
+
+function createMarker(latlng) {
+
+    var marker = new google.maps.Marker({
+        position: latlng,
+        label: labels[labelIndex++ % labels.length],
+        map: map
+    });
+}
+
+
+window.setUpHandler = function (id) {
+
+    var input = document.getElementById(id);
+
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+
+    var infowindow = new google.maps.InfoWindow();
+    var marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29)
+    });
+
+    autocomplete.addListener('place_changed', function () {
+        infowindow.close();
+        marker.setVisible(false);
+
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            window.alert("Choose Destination From The Autocomplete Dropdown");
+            input.style.backgroundColor = '#FFCECE';
+            input.style.border = "2px solid red";
+            input.value = "";
+            return;
+        }
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+            input.style.backgroundColor = '#EDFEED';
+            input.style.fontWeight = "900";
+            input.style.border = "2px solid black";
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+            input.style.fontWeight = "900";
+            input.style.backgroundColor = '#EDFEED';
+            input.style.border = "2px solid black";
+        }
+
+        var latitude = place.geometry.location.lat();
+        var longitude = place.geometry.location.lng();
+
+        var dataArray = document.getElementById('hdnfldVariable');
+
+        if (dataArray !== undefined && latitude !== undefined && longitude !== undefined) {
+            dataArray.value = dataArray.value + latitude + ':' + longitude + ',';
+            //window.alert(dataArray.value);
+        }
+
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+
+        var address = '';
+        if (place.address_components) {
+            address = [
+            (place.address_components[0] && place.address_components[0].short_name || ''),
+            (place.address_components[1] && place.address_components[1].short_name || ''),
+            (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+        };
+
+        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+        infowindow.open(map, marker);
+
+
+        infowindow.open(map, marker);
+    });
+}
+
+$(window).bind("load", function () {
+    setUpHandler('tb_1');
+    setUpHandler('tb_2');
+    setUpHandler('tb_3');
+    setUpHandler('tb_4');
+    setUpHandler('tb_5');
+});
+
+//google.maps.event.addDomListener(window, 'load', initMap);
