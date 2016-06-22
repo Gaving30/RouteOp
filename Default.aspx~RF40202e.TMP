@@ -1,0 +1,101 @@
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="RouteOp._Default" ClientIDMode="Static" Async="true" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <div class="jumbotron">
+        <h2 id="jumbotronHeading">
+            The Route Optimising SideKick
+        </h2>
+        <p class="lead">We save you time and money by optimising your driving routes. Simply enter your destinations below and our algorithms will find you the shortest path to take.</p>
+    </div>
+    
+    <!--<div id="GoogleMapDiv">-->
+    <div id="mapInputSection">
+        <h3 class="mainHeadings">
+            Enter Your Destinations Below:<br />
+        </h3>
+        <ul id="ulDestinations">
+            <li>
+                <label class="control controls numberLabelsForDestinations">Start</label>
+                <input type="text" class="userInputTextbox" id="tb_1" name="tb_1" placeholder="Enter A Location" />
+                <!--<input type="image" src="Images\currentLocationButton.png" class="imageAfterDestinations" alt="Use Current Location" title="Use Current Location" />-->
+            </li>
+            <li>
+                <label class="numberLabelsForDestinations">2</label>
+                <input type="text" class="userInputTextbox" id="tb_2" name="tb_2" placeholder="Enter A Location"/>             
+            </li>
+            <li>
+                <label class="numberLabelsForDestinations">3</label>
+                <input type="text" class="userInputTextbox" id="tb_3" name="tb_3" placeholder="Enter A Location"/>
+                <!--<input type="image" src="Images\delete.png" class="imageAfterDestinations" alt="Delete Text in Textbox" title="Delete Text in Textbox" />-->
+            </li>
+            <li>
+                <label class="numberLabelsForDestinations">4</label>
+                <input type="text" class="userInputTextbox" id="tb_4" name="tb_4" placeholder="Enter A Location"/>
+            </li>
+            <li>
+                <label class="numberLabelsForDestinations">5</label>
+                <input type="text" class="userInputTextbox" id="tb_5" name="tb_5" placeholder="Enter A Location"/>
+            </li>
+            <li>
+            <div class="input_fields_wrap">
+                <!--<label data-bind='personCount' class="personCount"></label>-->
+            </div>
+            </li>
+            <!--<li>
+            <asp:DropDownList ID="chooseTravelTypeDropDown" runat="server" Height="22px" Width="146px">
+            <asp:ListItem Value="Crow">As The Crow Flies</asp:ListItem>
+            <asp:ListItem Selected="True">Road</asp:ListItem>
+            </asp:DropDownList>
+            </li>-->
+            <li>
+                <button class="add_field_button btn btn-info">Add More Fields</button>
+                <input type="submit" id="verifyButton" class="btn btn-info" value="Verify Addresses" title="Please Fill All Textboxs" />
+            </li>
+            <li>
+                <input type="submit" id="optimiseButton" class="btn btn-info" value="Optimise" title="Please Fill All Textboxs" onclick="return false;" />
+            </li>
+        </ul>
+    </div>
+
+    <input type="hidden" class="hiddenLAtLng" id="lng1" value="" name="lng1" runat="server"/>
+    <input type="hidden" class="hiddenLAtLng" id="lat1" value="" name="lat1" runat="server" />
+    <input type="hidden" class="hiddenLAtLng" id="lng2" value="" name="lng2" runat="server" />
+    <input type="hidden" class="hiddenLAtLng" id="lat2" value="" name="lat2" runat="server" />
+    <input type="hidden" class="hiddenLAtLng" id="lng3" value="" name="lng3" runat="server" />
+    <input type="hidden" class="hiddenLAtLng" id="lat3" value="" name="lat3" runat="server" />
+    <input type="hidden" class="hiddenLAtLng" id="lng4" value="" name="lng4" runat="server" />
+    <input type="hidden" class="hiddenLAtLng" id="lat4" value="" name="lat4" runat="server" />
+    <input type="hidden" class="hiddenLAtLng" id="lng5" value="" name="lng5" runat="server" />
+    <input type="hidden" class="hiddenLAtLng" id="lat5" value="" name="lat5" runat="server" />
+    <span id="log" ></span>
+        
+    <div id="mapAndResultDiv">
+        <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
+
+        <!--Google Map Div-->
+        <div id="map"></div>
+        <div runat="server" id="routeToTakeDiv">
+            <h3 class="mainHeadings">
+                Optimal Route to Take:<br />
+            </h3>
+            <ul>
+                <li>
+                    Label 1
+                </li>
+                <li>
+                    Label 2
+                </li>
+                <li>
+                    Label 3
+                </li>
+                <li>
+                    Label 4
+                </li>
+                <li>
+                    Label 5
+                </li>
+            </ul>
+        </div>
+    </div>
+</asp:Content>
